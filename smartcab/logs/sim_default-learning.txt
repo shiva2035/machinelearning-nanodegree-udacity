@@ -1,0 +1,472 @@
+/-----------------------------------------
+| State-action rewards from Q-Learning
+\-----------------------------------------
+
+('left', 'green', 'forward', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -3.69
+ -- left : 1.25
+
+('left', 'red', 'right', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.40
+ -- left : 0.00
+
+('left', 'red', None, None)
+ -- forward : -16.93
+ -- right : 0.87
+ -- None : 1.90
+ -- left : -10.34
+
+('forward', 'red', 'forward', 'right')
+ -- forward : -19.78
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'green', 'forward', 'right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -10.06
+
+('left', 'red', 'right', 'left')
+ -- forward : -4.82
+ -- right : 0.67
+ -- None : 0.00
+ -- left : -4.82
+
+('left', 'red', None, 'left')
+ -- forward : -5.14
+ -- right : 0.30
+ -- None : 1.05
+ -- left : -8.63
+
+('right', 'red', 'forward', None)
+ -- forward : -19.51
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('forward', 'green', 'left', None)
+ -- forward : 0.77
+ -- right : 0.42
+ -- None : -2.76
+ -- left : 0.37
+
+('forward', 'red', 'left', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'red', 'right', None)
+ -- forward : 0.00
+ -- right : 0.60
+ -- None : 1.47
+ -- left : -5.12
+
+('forward', 'green', 'right', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'red', None, 'left')
+ -- forward : -16.42
+ -- right : 1.40
+ -- None : 0.20
+ -- left : -10.46
+
+('left', 'red', 'forward', None)
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 1.91
+ -- left : 0.00
+
+('forward', 'green', 'left', 'left')
+ -- forward : 0.00
+ -- right : -0.06
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'red', None, 'forward')
+ -- forward : -8.44
+ -- right : 0.43
+ -- None : 2.34
+ -- left : -5.40
+
+('forward', 'red', None, 'right')
+ -- forward : -4.60
+ -- right : -0.02
+ -- None : 0.22
+ -- left : 0.00
+
+('forward', 'red', 'left', None)
+ -- forward : -4.71
+ -- right : 0.63
+ -- None : 0.00
+ -- left : -4.87
+
+('right', 'green', 'left', 'right')
+ -- forward : 0.01
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'green', 'left', None)
+ -- forward : 0.49
+ -- right : 0.59
+ -- None : -4.40
+ -- left : 1.68
+
+('right', 'green', 'left', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.44
+
+('forward', 'green', None, 'forward')
+ -- forward : 1.49
+ -- right : 0.87
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'red', 'left', 'left')
+ -- forward : -4.80
+ -- right : 0.09
+ -- None : 1.31
+ -- left : -5.12
+
+('forward', 'green', 'forward', None)
+ -- forward : 2.23
+ -- right : 0.09
+ -- None : 0.00
+ -- left : 0.48
+
+('right', 'green', 'forward', None)
+ -- forward : 0.96
+ -- right : 1.49
+ -- None : -2.53
+ -- left : 0.00
+
+('forward', 'red', 'left', 'left')
+ -- forward : -5.39
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('forward', 'green', 'right', None)
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.97
+
+('right', 'green', 'left', None)
+ -- forward : 0.36
+ -- right : 0.00
+ -- None : -4.02
+ -- left : 0.00
+
+('left', 'red', 'left', None)
+ -- forward : -7.19
+ -- right : -0.13
+ -- None : 0.00
+ -- left : -16.92
+
+('forward', 'red', 'left', 'right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('forward', 'green', None, 'left')
+ -- forward : 2.21
+ -- right : -0.05
+ -- None : -2.10
+ -- left : 1.14
+
+('left', 'red', 'forward', 'right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('forward', 'red', 'forward', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 2.02
+ -- left : 0.00
+
+('forward', 'green', 'right', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('forward', 'green', 'left', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'red', 'left', None)
+ -- forward : 0.00
+ -- right : 1.09
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'green', None, 'left')
+ -- forward : 0.93
+ -- right : 0.49
+ -- None : -4.65
+ -- left : 1.71
+
+('right', 'red', 'forward', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 1.04
+ -- left : 0.00
+
+('forward', 'green', 'forward', 'left')
+ -- forward : 0.50
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'green', None, None)
+ -- forward : 0.62
+ -- right : 1.93
+ -- None : -4.85
+ -- left : 0.40
+
+('right', 'red', 'forward', 'right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -20.28
+
+('forward', 'green', 'forward', 'right')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -2.21
+ -- left : 0.00
+
+('left', 'green', 'forward', 'forward')
+ -- forward : -0.30
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'green', 'right', 'left')
+ -- forward : 0.45
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('forward', 'red', None, 'forward')
+ -- forward : 0.00
+ -- right : -0.06
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'red', 'right', None)
+ -- forward : -4.73
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -4.61
+
+('left', 'red', 'forward', 'forward')
+ -- forward : -20.44
+ -- right : -10.01
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'green', None, 'left')
+ -- forward : 0.71
+ -- right : 0.78
+ -- None : -3.44
+ -- left : 0.60
+
+('right', 'green', 'right', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -2.14
+ -- left : 0.00
+
+('left', 'green', 'left', 'forward')
+ -- forward : 0.20
+ -- right : 0.00
+ -- None : -2.66
+ -- left : 0.00
+
+('right', 'green', None, 'right')
+ -- forward : 0.00
+ -- right : 0.83
+ -- None : 0.00
+ -- left : -17.47
+
+('right', 'red', None, None)
+ -- forward : -9.36
+ -- right : 1.82
+ -- None : 0.95
+ -- left : -8.96
+
+('right', 'red', 'left', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.35
+ -- left : 0.00
+
+('forward', 'red', 'right', 'left')
+ -- forward : 0.00
+ -- right : 0.12
+ -- None : 0.00
+ -- left : 0.00
+
+('right', 'red', 'forward', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.59
+ -- left : -19.60
+
+('right', 'red', 'right', 'left')
+ -- forward : 0.00
+ -- right : 0.84
+ -- None : 0.00
+ -- left : -5.35
+
+('left', 'red', 'left', 'forward')
+ -- forward : -4.97
+ -- right : 0.77
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'green', None, 'right')
+ -- forward : 0.27
+ -- right : 0.00
+ -- None : -2.67
+ -- left : 0.00
+
+('right', 'red', None, 'right')
+ -- forward : 0.00
+ -- right : 1.36
+ -- None : 0.00
+ -- left : -20.38
+
+('right', 'red', None, 'forward')
+ -- forward : -8.70
+ -- right : 1.13
+ -- None : -0.09
+ -- left : -10.96
+
+('forward', 'red', None, None)
+ -- forward : 0.00
+ -- right : 0.95
+ -- None : 1.22
+ -- left : -9.87
+
+('forward', 'red', None, 'left')
+ -- forward : -7.48
+ -- right : 0.88
+ -- None : 0.52
+ -- left : -7.77
+
+('left', 'red', 'forward', 'left')
+ -- forward : -20.06
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -19.77
+
+('left', 'red', None, 'right')
+ -- forward : -4.87
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -30.40
+
+('right', 'green', 'right', None)
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.20
+
+('right', 'green', None, 'forward')
+ -- forward : 0.96
+ -- right : 0.00
+ -- None : -3.76
+ -- left : 0.00
+
+('forward', 'green', None, 'right')
+ -- forward : 0.68
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'green', 'right', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 1.45
+
+('forward', 'green', 'forward', 'forward')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'green', None, 'forward')
+ -- forward : -0.21
+ -- right : 0.85
+ -- None : -2.67
+ -- left : -10.36
+
+('forward', 'red', 'forward', None)
+ -- forward : -20.13
+ -- right : 0.00
+ -- None : 1.56
+ -- left : 0.00
+
+('right', 'red', 'left', 'left')
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : 0.00
+ -- left : -7.29
+
+('left', 'green', 'forward', 'right')
+ -- forward : 0.00
+ -- right : 0.15
+ -- None : 0.00
+ -- left : 0.00
+
+('left', 'green', None, None)
+ -- forward : 0.09
+ -- right : 0.31
+ -- None : -5.05
+ -- left : 1.22
+
+('left', 'green', 'right', None)
+ -- forward : 0.00
+ -- right : 0.00
+ -- None : -2.06
+ -- left : 0.00
+
+('left', 'green', 'forward', None)
+ -- forward : 0.38
+ -- right : 0.48
+ -- None : 0.00
+ -- left : 1.86
+
+('forward', 'green', 'left', 'right')
+ -- forward : 1.03
+ -- right : 0.00
+ -- None : -2.94
+ -- left : 0.00
+
+('forward', 'green', None, None)
+ -- forward : 1.94
+ -- right : 0.59
+ -- None : -3.96
+ -- left : 0.14
+
